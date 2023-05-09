@@ -1,10 +1,8 @@
 import { useState, useEffect } from 'react';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../../utils/firebase';
 import { useNavigate } from 'react-router-dom';
-import { post } from '../../../lib/axios';
 
-const useFirebaseSignup = (email, password) => {
+const useFirebaseLogout = () => {
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -25,14 +23,16 @@ const useFirebaseSignup = (email, password) => {
     );
 
     return () => unsubscribe();
-  }, [auth]);
+  }, []);
 
-  const signup = () => {
+  const logout = () => {
     setIsLoading(true);
-    createUserWithEmailAndPassword(auth, email, password)
-      .then(({ user: { email, uid } }) => {
-        post('/createUserDocument', { email, uid });
-        if (user) navigate('/profile');
+    auth
+      .signOut()
+      .then(() => {
+        setIsLoading(false);
+        setUser(null);
+        if (!user) navigate('/login');
       })
       .catch((firebaseError) => {
         setError(firebaseError);
@@ -40,7 +40,7 @@ const useFirebaseSignup = (email, password) => {
       });
   };
 
-  return { user, error, isLoading, signup };
+  return { user, error, isLoading, logout };
 };
 
-export default useFirebaseSignup;
+export default useFirebaseLogout;
