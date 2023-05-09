@@ -1,0 +1,31 @@
+import { useState } from 'react';
+
+import PageContainer from '../layouts/PageContainer';
+import SignupForm from '../features/authentication/components/SignupForm';
+import useFirebaseSignup from '../features/authentication/hooks/useFirebaseSignup';
+
+const Signup = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+
+  const { user, error, isLoading, signup } = useFirebaseSignup(email, password);
+
+  const handleSignup = () => signup();
+
+  return (
+    <PageContainer>
+      <SignupForm
+        emailData={email}
+        passwordData={password}
+        confirmPasswordData={confirmPassword}
+        setEmail={setEmail}
+        setPassword={setPassword}
+        setConfirmPassword={setConfirmPassword}
+        handleSignup={handleSignup}
+      />
+    </PageContainer>
+  );
+};
+
+export default Signup;
