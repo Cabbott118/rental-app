@@ -3,6 +3,8 @@ import { useState } from 'react';
 import PageContainer from '../layouts/PageContainer';
 import LoginForm from '../features/authentication/components/LoginForm';
 import useFirebaseLogin from '../features/authentication/hooks/useFirebaseLogin';
+import AuthenticationHeader from '../features/authentication/components/AuthenticationHeader';
+import AuthenticationFooter from '../features/authentication/components/AuthenticationFooter';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -12,8 +14,11 @@ const Login = () => {
 
   const handleLogin = () => login();
 
+  const pageType = 'Login';
+
   return (
     <PageContainer>
+      <AuthenticationHeader title={pageType} />
       <LoginForm
         emailData={email}
         passwordData={password}
@@ -21,6 +26,7 @@ const Login = () => {
         setPassword={setPassword}
         handleLogin={handleLogin}
       />
+      <AuthenticationFooter type={pageType} />
     </PageContainer>
   );
 };

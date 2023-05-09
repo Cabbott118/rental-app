@@ -1,14 +1,15 @@
+// React Router
+import { RouterProvider } from 'react-router-dom';
+import { router } from './utils/routes';
+
 // MUI
 import { ThemeProvider } from '@emotion/react';
 import theme from './utils/theme';
-import Login from './pages/Login';
-import Signup from './pages/Signup';
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <Login />
-      <Signup />
+      <RouterProvider router={router} />
     </ThemeProvider>
   );
 }

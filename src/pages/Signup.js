@@ -3,6 +3,8 @@ import { useState } from 'react';
 import PageContainer from '../layouts/PageContainer';
 import SignupForm from '../features/authentication/components/SignupForm';
 import useFirebaseSignup from '../features/authentication/hooks/useFirebaseSignup';
+import AuthenticationHeader from '../features/authentication/components/AuthenticationHeader';
+import AuthenticationFooter from '../features/authentication/components/AuthenticationFooter';
 
 const Signup = () => {
   const [email, setEmail] = useState('');
@@ -13,8 +15,11 @@ const Signup = () => {
 
   const handleSignup = () => signup();
 
+  const pageType = 'Sign up';
+
   return (
     <PageContainer>
+      <AuthenticationHeader title={pageType} />
       <SignupForm
         emailData={email}
         passwordData={password}
@@ -24,6 +29,7 @@ const Signup = () => {
         setConfirmPassword={setConfirmPassword}
         handleSignup={handleSignup}
       />
+      <AuthenticationFooter type={pageType} />
     </PageContainer>
   );
 };
