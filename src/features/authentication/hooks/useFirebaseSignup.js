@@ -3,6 +3,7 @@ import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../../utils/firebase';
 import { useNavigate } from 'react-router-dom';
 import { post } from '../../../lib/axios';
+import { createUserDocument } from '../../../data/constants';
 
 const useFirebaseSignup = (email, password) => {
   const [user, setUser] = useState(null);
@@ -25,14 +26,14 @@ const useFirebaseSignup = (email, password) => {
     );
 
     return () => unsubscribe();
-  }, [auth]);
+  }, [user]);
 
   const signup = () => {
     setIsLoading(true);
     createUserWithEmailAndPassword(auth, email, password)
       .then(({ user: { email, uid } }) => {
-        post('/createUserDocument', { email, uid });
-        if (user) navigate('/profile');
+        post(createUserDocument, { email, uid });
+        navigate(`/`);
       })
       .catch((firebaseError) => {
         setError(firebaseError);

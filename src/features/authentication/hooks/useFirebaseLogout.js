@@ -32,7 +32,7 @@ const useFirebaseLogout = () => {
       .then(() => {
         setIsLoading(false);
         setUser(null);
-        if (!user) navigate('/login');
+        navigate('/login');
       })
       .catch((firebaseError) => {
         setError(firebaseError);

@@ -28,6 +28,7 @@ const Signup = () => {
         setPassword={setPassword}
         setConfirmPassword={setConfirmPassword}
         handleSignup={handleSignup}
+        isLoading={isLoading}
       />
       <AuthenticationFooter type={pageType} />
     </PageContainer>

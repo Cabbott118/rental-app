@@ -9,6 +9,7 @@ const SignupForm = ({
   setConfirmPassword,
   setPassword,
   handleSignup,
+  isLoading,
 }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -40,7 +41,7 @@ const SignupForm = ({
         value={confirmPasswordData}
         onChange={(e) => setConfirmPassword(e.target.value)}
       />
-      <MyButton text='Sign Up' />
+      <MyButton fullWidth text='Sign Up' loading={isLoading} />
     </Box>
   );
 };

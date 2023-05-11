@@ -29,8 +29,8 @@ const useFirebaseLogin = (email, password) => {
   const login = () => {
     setIsLoading(true);
     signInWithEmailAndPassword(auth, email, password)
-      .then(() => {
-        if (user) navigate('/profile');
+      .then(({ user: { uid } }) => {
+        if (user) navigate(`/profile/${uid}`);
       })
       .catch((firebaseError) => {
         setError(firebaseError);

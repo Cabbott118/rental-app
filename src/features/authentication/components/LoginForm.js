@@ -1,5 +1,6 @@
-import { MyButton, MyTextField } from '../../../lib/mui';
+// MUI
 import { Box } from '@mui/material';
+import { MyButton, MyTextField } from '../../../lib/mui';
 
 const LoginForm = ({
   emailData,
@@ -7,6 +8,7 @@ const LoginForm = ({
   setEmail,
   setPassword,
   handleLogin,
+  isLoading,
 }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -30,7 +32,7 @@ const LoginForm = ({
         value={passwordData}
         onChange={(e) => setPassword(e.target.value)}
       />
-      <MyButton text='Login' />
+      <MyButton fullWidth text='Login' loading={isLoading} />
     </Box>
   );
 };

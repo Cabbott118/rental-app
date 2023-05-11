@@ -25,6 +25,7 @@ const Login = () => {
         setEmail={setEmail}
         setPassword={setPassword}
         handleLogin={handleLogin}
+        isLoading={isLoading}
       />
       <AuthenticationFooter type={pageType} />
     </PageContainer>

@@ -1,5 +1,13 @@
+import ProfileMain from '../features/profile/components/ProfileMain';
+import PageContainer from '../layouts/PageContainer';
+
 const Profile = () => {
-  return <div>Profile</div>;
+  return (
+    <PageContainer>
+      Profile
+      <ProfileMain />
+    </PageContainer>
+  );
 };
 
 export default Profile;

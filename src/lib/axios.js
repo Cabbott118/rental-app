@@ -6,7 +6,7 @@ const API_URL = 'https://us-central1-rental-app-60a86.cloudfunctions.net';
 const LOCAL_URL = 'http://127.0.0.1:5001/rental-app-60a86/us-central1';
 
 const api = axios.create({
-  baseURL: LOCAL_URL,
+  baseURL: API_URL,
 });
 
 export const get = async (path, params = {}) => {

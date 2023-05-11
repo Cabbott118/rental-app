@@ -1,10 +1,10 @@
-import { Box, Button, Container, TextField, Typography } from '@mui/material';
+import { Button, Container, TextField, Typography } from '@mui/material';
 
-export const MyButton = ({ text, ...rest }) => (
+export const MyButton = ({ text, loading, ...rest }) => (
   <Button
     type='submit'
-    fullWidth
     variant='contained'
+    disabled={loading}
     sx={{ mt: 3, mb: 2, textTransform: 'none' }}
     {...rest}
   >
