@@ -1,5 +1,8 @@
-import ProfileMain from '../features/profile/components/ProfileMain';
+// MUI
 import PageContainer from '../layouts/PageContainer';
+
+// Components
+import ProfileMain from '../features/profile/components/ProfileMain';
 
 const Profile = () => {
   return (

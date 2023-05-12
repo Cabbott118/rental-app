@@ -1,9 +1,9 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { getUserById } from '../../../data/constants';
+import { GET_USER_BY_ID } from '../../../data/constants';
 import { get } from '../../../lib/axios';
 
 const fetchUser = createAsyncThunk('user/fetchUser', async (id) => {
-  const response = await get(getUserById, { userId: id });
+  const response = await get(GET_USER_BY_ID, { userId: id });
   return response;
 });
 
