@@ -30,7 +30,7 @@ const useFirebaseLogin = (email, password) => {
     setIsLoading(true);
     signInWithEmailAndPassword(auth, email, password)
       .then(({ user: { uid } }) => {
-        if (user) navigate(`/profile/${uid}`);
+        navigate('/');
       })
       .catch((firebaseError) => {
         setError(firebaseError);
