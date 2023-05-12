@@ -3,7 +3,7 @@ import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../../utils/firebase';
 import { useNavigate } from 'react-router-dom';
 import { post } from '../../../lib/axios';
-import { CREATE_USER_DOCUMENT } from '../../../data/constants';
+import { POST_USER } from '../../../data/constants';
 
 const useFirebaseSignup = (email, password) => {
   const [user, setUser] = useState(null);
@@ -32,7 +32,7 @@ const useFirebaseSignup = (email, password) => {
     setIsLoading(true);
     createUserWithEmailAndPassword(auth, email, password)
       .then(({ user: { email, uid } }) => {
-        post(CREATE_USER_DOCUMENT, { email, uid });
+        post(POST_USER, { email, uid });
         navigate(`/`);
       })
       .catch((firebaseError) => {

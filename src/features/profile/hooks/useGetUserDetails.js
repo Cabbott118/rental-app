@@ -1,6 +1,6 @@
 // import { useState, useEffect } from 'react';
 // import { get } from '../../../lib/axios';
-// import { GET_USER_BY_ID } from '../../../data/constants';
+// import { GET_USER } from '../../../data/constants';
 
 // const useGetUserDetails = (userId) => {
 //   const [user, setUser] = useState(null);
@@ -10,7 +10,7 @@
 //   useEffect(() => {
 //     const fetchData = async () => {
 //       try {
-//         const userData = await get(GET_USER_BY_ID, { userId });
+//         const userData = await get(GET_USER, { userId });
 //         setUser(userData);
 //         setIsLoading(false);
 //       } catch (error) {

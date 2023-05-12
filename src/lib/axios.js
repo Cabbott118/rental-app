@@ -1,9 +1,7 @@
 // Implementation of the "Facade Pattern"
-
 import axios from 'axios';
 
-const API_URL = 'https://us-central1-rental-app-60a86.cloudfunctions.net';
-const LOCAL_URL = 'http://127.0.0.1:5001/rental-app-60a86/us-central1';
+import { API_URL, LOCAL_API_URL } from '../data/constants';
 
 const api = axios.create({
   baseURL: API_URL,

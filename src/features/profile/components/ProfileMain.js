@@ -14,11 +14,16 @@ const ProfileMain = () => {
   const { userId } = useParams();
   const { data, error, isLoading } = useGetUsersQuery(userId);
   console.log(data);
+  console.log(isLoading);
 
   const { logout } = useFirebaseLogout();
 
   if (isLoading) {
     return <p>Loading...</p>;
+  }
+
+  if (!data) {
+    return null;
   }
 
   return (
