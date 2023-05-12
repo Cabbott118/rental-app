@@ -15,7 +15,7 @@ export const store = configureStore({
     user: userReduser,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(pokemonApi.middleware),
+    getDefaultMiddleware().concat(pokemonApi.middleware, userApi.middleware),
 });
 
 setupListeners(store.dispatch);
