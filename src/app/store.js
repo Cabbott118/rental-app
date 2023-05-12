@@ -3,6 +3,7 @@ import { setupListeners } from '@reduxjs/toolkit/query';
 
 // Services
 import { pokemonApi } from '../services/pokemonServices';
+import { userApi } from '../services/userServices';
 
 // Reducers
 import userReduser from '../features/authentication/slices/userSlice';
@@ -10,6 +11,7 @@ import userReduser from '../features/authentication/slices/userSlice';
 export const store = configureStore({
   reducer: {
     [pokemonApi.reducerPath]: pokemonApi.reducer,
+    [userApi.reducerPath]: userApi.reducer,
     user: userReduser,
   },
   middleware: (getDefaultMiddleware) =>
