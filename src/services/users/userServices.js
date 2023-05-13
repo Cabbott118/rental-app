@@ -1,4 +1,4 @@
-import { POST_USER, GET_USER } from '../../data/constants';
+import { POST_USER, GET_USER, PATCH_USER } from '../../data/constants';
 import { api } from '../baseService';
 
 const userApi = api.injectEndpoints({
@@ -14,10 +14,10 @@ const userApi = api.injectEndpoints({
       }),
     }),
     updateUser: builder.mutation({
-      query: ({ id, name, email }) => ({
-        url: `user/${id}`,
+      query: (userId, { legalName, address, phoneNumber }) => ({
+        url: `${PATCH_USER}/${userId}`,
         method: 'PATCH',
-        body: { name, email },
+        body: { legalName, address, phoneNumber },
       }),
     }),
     deleteUser: builder.mutation({

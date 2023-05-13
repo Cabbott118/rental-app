@@ -2,13 +2,12 @@
 import PageContainer from '../layouts/PageContainer';
 
 // Components
-import ProfileMain from '../features/profile/components/ProfileMain';
+import ProfileLayout from '../features/profile/components/ProfileLayout';
 
 const Profile = () => {
   return (
     <PageContainer>
-      Profile
-      <ProfileMain />
+      <ProfileLayout />
     </PageContainer>
   );
 };

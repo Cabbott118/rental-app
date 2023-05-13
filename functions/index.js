@@ -8,6 +8,8 @@ admin.initializeApp();
 const app = express();
 app.use(cors({ origin: true }));
 
+// User Routes
+
 app.post('/user', async (req, res) => {
   try {
     const { uid, email } = req.body;
@@ -47,13 +49,18 @@ app.get('/user/:userId', async (req, res) => {
 
 app.patch('/user/:userId', async (req, res) => {
   try {
-    const { userId } = req.params;
-    const { field1, field2 } = req.body;
+    const userId = req.params.userId;
+    const { legalName, address, phoneNumber } = req.body;
     if (!userId) {
       return res.status(400).json({ error: 'User ID is required' });
     }
     const userRef = admin.firestore().collection('users').doc(userId);
-    await userRef.update({ field1, field2 });
+    await userRef.update({
+      legalName,
+      address,
+      phoneNumber,
+      isRegistered: true,
+    });
     return res.status(200).json({ message: 'User updated successfully' });
   } catch (error) {
     console.error(error);
