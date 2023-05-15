@@ -51,13 +51,7 @@ const ProfileUpdateForm = ({ userId }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const { legalName, address, phoneNumber } = formState;
-    const requestBody = {
-      legalName,
-      address,
-      phoneNumber,
-    };
-    updateUser({ userId, requestBody })
+    updateUser({ userId, formState })
       .unwrap()
       .then(() => {
         console.log('success');

@@ -14,10 +14,10 @@ const userApi = api.injectEndpoints({
       }),
     }),
     updateUser: builder.mutation({
-      query: (userId, { legalName, address, phoneNumber }) => ({
+      query: ({ userId, formState }) => ({
         url: `${PATCH_USER}/${userId}`,
         method: 'PATCH',
-        body: { legalName, address, phoneNumber },
+        body: formState,
       }),
     }),
     deleteUser: builder.mutation({
@@ -28,7 +28,7 @@ const userApi = api.injectEndpoints({
     }),
   }),
 
-  overrideExisting: false,
+  // overrideExisting: false,
 });
 
 export const {
