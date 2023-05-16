@@ -6,7 +6,7 @@ import ProfileLayout from '../features/profile/components/ProfileLayout';
 
 const Profile = () => {
   return (
-    <PageContainer>
+    <PageContainer maxWidth='sm'>
       <ProfileLayout />
     </PageContainer>
   );

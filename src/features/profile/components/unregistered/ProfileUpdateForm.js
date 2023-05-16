@@ -10,6 +10,9 @@ import { useUpdateUserMutation } from '../../../../services/users/userServices';
 // React Router
 import { useNavigate } from 'react-router-dom';
 
+// Profile Image Upload
+import ProfileImageUpload from './ProfileImageUpload';
+
 const ProfileUpdateForm = ({ userId }) => {
   const navigate = useNavigate();
 
@@ -65,6 +68,9 @@ const ProfileUpdateForm = ({ userId }) => {
   return (
     <form onSubmit={handleSubmit}>
       <Grid container spacing={2}>
+        <Grid item xs={12}>
+          <ProfileImageUpload />
+        </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
             name='legalName.first'

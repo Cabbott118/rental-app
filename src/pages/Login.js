@@ -17,7 +17,7 @@ const Login = () => {
   const pageType = 'Login';
 
   return (
-    <PageContainer>
+    <PageContainer maxWidth='xs'>
       <AuthenticationHeader title={pageType} />
       <LoginForm
         emailData={email}

@@ -1,22 +1,49 @@
 // MUI
-import { useTheme } from '@mui/material';
-import { Grid, Typography } from '@mui/material';
+import { List, ListItemText, Paper, Typography, useTheme } from '@mui/material';
+import { MyButton } from '../../../../lib/mui';
 
-const ProfileUpdateHeader = () => {
+// React Router
+import { useNavigate } from 'react-router-dom';
+
+// Content
+import {
+  updateProfileHeader,
+  updateProfileSubHeader,
+  updateProfileBody,
+  updateProfileList,
+} from '../../../../data/content';
+
+const ProfileUpdateHeader = ({ userId }) => {
   const theme = useTheme();
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/profile/${userId}/update-profile`);
+  };
 
   return (
-    <>
+    <Paper variant='outlined' sx={{ p: '1.5rem', bgcolor: '#eee' }}>
       <Typography variant='h6' sx={{ color: theme.palette.text.primary }}>
-        Add some details to your profile
+        {updateProfileHeader}
       </Typography>
       <Typography
         variant='body1'
         sx={{ color: theme.palette.text.secondary, py: 2 }}
       >
-        If you don't mind, give us a bit more information aboout yourself.
+        {updateProfileSubHeader}
       </Typography>
-    </>
+      <Typography variant='body1' sx={{ color: theme.palette.text.primary }}>
+        {updateProfileBody}
+      </Typography>
+      <List>
+        {updateProfileList.map((item, key) => (
+          <Typography variant='body2' key={key}>
+            {item}
+          </Typography>
+        ))}
+      </List>
+      <MyButton fullWidth text='Update Profile' onClick={handleClick} />
+    </Paper>
   );
 };
 

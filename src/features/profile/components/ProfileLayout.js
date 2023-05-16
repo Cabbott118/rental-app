@@ -2,7 +2,7 @@
 import { useParams } from 'react-router-dom';
 
 // MUI
-import { Grid, Typography } from '@mui/material';
+import { Button, Grid } from '@mui/material';
 
 // Hooks
 import useFirebaseLogout from '../../authentication/hooks/useFirebaseLogout';
@@ -13,7 +13,6 @@ import { useGetUsersQuery } from '../../../services/users/userServices';
 // Components
 import ProfileMain from './ProfileMain';
 import ProfileUpdateHeader from './unregistered/ProfileUpdateHeader';
-import ProfileUpdateForm from './unregistered/ProfileUpdateForm';
 
 const ProfileLayout = () => {
   const { userId } = useParams();
@@ -30,15 +29,22 @@ const ProfileLayout = () => {
   }
 
   return (
-    <Grid container>
+    <Grid
+      container
+      direction='column'
+      justifyContent='center'
+      alignItems='center'
+    >
       {data.isRegistered ? (
-        <ProfileMain />
+        <ProfileMain user={data} />
       ) : (
         <Grid item>
-          <ProfileUpdateHeader />
-          <ProfileUpdateForm userId={data.userId} />
+          <ProfileUpdateHeader userId={data.userId} />
         </Grid>
       )}
+      <Button color='error' sx={{ textTransform: 'none' }} onClick={logout}>
+        Logout
+      </Button>
     </Grid>
   );
 };
@@ -46,7 +52,4 @@ const ProfileLayout = () => {
 export default ProfileLayout;
 
 {
-  /* <Button color='warning' sx={{ textTransform: 'none' }} onClick={logout}>
-  Logout
-</Button>; */
 }

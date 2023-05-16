@@ -18,7 +18,7 @@ const Signup = () => {
   const pageType = 'Sign up';
 
   return (
-    <PageContainer>
+    <PageContainer maxWidth='xs'>
       <AuthenticationHeader title={pageType} />
       <SignupForm
         emailData={email}
