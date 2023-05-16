@@ -4,19 +4,19 @@ import { Form1, Form2, Form3 } from './HostForms';
 
 const FormStepper = ({ userId }) => {
   const [activeStep, setActiveStep] = useState(0);
-  const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    dateOfBirth: '',
-    phoneNumber: '',
+  const [formState, setFormState] = useState({
+    legalName: {
+      first: '',
+      last: '',
+    },
     address: {
       addressLineOne: '',
       city: '',
       state: '',
       zipCode: '',
     },
-    agreedToTermsAndConditions: false,
-    isRegistered: true,
+    phoneNumber: '',
+    dateOfBirth: '',
   });
 
   const steps = ['Step 1', 'Step 2', 'Step 3'];
@@ -37,8 +37,8 @@ const FormStepper = ({ userId }) => {
             })}
           </Stepper>
           <Form1
-            data={formData}
-            setData={setFormData}
+            formState={formState}
+            setFormState={setFormState}
             nextStep={() => setActiveStep(activeStep + 1)}
           />
         </>
@@ -58,8 +58,8 @@ const FormStepper = ({ userId }) => {
             })}
           </Stepper>
           <Form2
-            data={formData}
-            setData={setFormData}
+            formState={formState}
+            setFormState={setFormState}
             prevStep={() => setActiveStep(activeStep - 1)}
             nextStep={() => setActiveStep(activeStep + 1)}
           />
@@ -81,8 +81,8 @@ const FormStepper = ({ userId }) => {
           </Stepper>
           <Form3
             userId={userId}
-            data={formData}
-            setData={setFormData}
+            formState={formState}
+            setFormState={setFormState}
             prevStep={() => setActiveStep(activeStep - 1)}
           />
         </>

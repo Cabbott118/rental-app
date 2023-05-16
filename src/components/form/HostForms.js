@@ -10,16 +10,15 @@ import MenuItem from '@mui/material/MenuItem';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 
+import { useUpdateUserMutation } from '../../services/users/userServices';
+
 // React-Router
 import { useNavigate } from 'react-router-dom';
 
-// Functions
-import { updateUserDetails } from '../functions/users/updateUserDetails';
-
 // Utility
-import states from '../utility/states.json';
+import states from '../../data/states.json';
 
-export const Form1 = ({ data, setData, nextStep }) => {
+export const Form1 = ({ formState, setFormState, nextStep }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     nextStep();
@@ -42,22 +41,38 @@ export const Form1 = ({ data, setData, nextStep }) => {
           <TextField
             required
             fullWidth
-            id='firstName'
+            id='first'
             label='First Name'
-            name='firstName'
-            value={data.firstName}
-            onChange={(e) => setData({ ...data, firstName: e.target.value })}
+            name='first'
+            value={formState.legalName.first}
+            onChange={(e) =>
+              setFormState({
+                ...formState,
+                legalName: {
+                  ...formState.legalName,
+                  first: e.target.value,
+                },
+              })
+            }
             autoFocus
           />
           <TextField
             margin='normal'
             required
             fullWidth
-            id='lastName'
+            id='last'
             label='Last Name'
-            name='lastName'
-            value={data.lastName}
-            onChange={(e) => setData({ ...data, lastName: e.target.value })}
+            name='last'
+            value={formState.legalName.last}
+            onChange={(e) =>
+              setFormState({
+                ...formState,
+                legalName: {
+                  ...formState.legalName,
+                  last: e.target.value,
+                },
+              })
+            }
           />
           <Typography variant='caption'>When were you born? </Typography>
           <TextField
@@ -67,8 +82,10 @@ export const Form1 = ({ data, setData, nextStep }) => {
             id='dateOfBirth'
             name='dateOfBirth'
             type='date'
-            value={data.dateOfBirth}
-            onChange={(e) => setData({ ...data, dateOfBirth: e.target.value })}
+            value={formState.dateOfBirth}
+            onChange={(e) =>
+              setFormState({ ...formState, dateOfBirth: e.target.value })
+            }
           />
           <Typography variant='caption'>
             What number can we contact you at?
@@ -79,8 +96,10 @@ export const Form1 = ({ data, setData, nextStep }) => {
             id='phoneNumber'
             label='Phone Number'
             name='phoneNumber'
-            value={data.phoneNumber}
-            onChange={(e) => setData({ ...data, phoneNumber: e.target.value })}
+            value={formState.phoneNumber}
+            onChange={(e) =>
+              setFormState({ ...formState, phoneNumber: e.target.value })
+            }
           />
           <Button
             type='submit'
@@ -95,7 +114,7 @@ export const Form1 = ({ data, setData, nextStep }) => {
   );
 };
 
-export const Form2 = ({ data, setData, prevStep, nextStep }) => {
+export const Form2 = ({ formState, setFormState, prevStep, nextStep }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     nextStep();
@@ -123,12 +142,12 @@ export const Form2 = ({ data, setData, prevStep, nextStep }) => {
             id='addressLineOne'
             label='Address'
             name='addressLineOne'
-            value={data.address.addressLineOne}
+            value={formState.address.addressLineOne}
             onChange={(e) =>
-              setData({
-                ...data,
+              setFormState({
+                ...formState,
                 address: {
-                  ...data.address,
+                  ...formState.address,
                   addressLineOne: e.target.value,
                 },
               })
@@ -143,12 +162,12 @@ export const Form2 = ({ data, setData, prevStep, nextStep }) => {
             id='city'
             label='City'
             name='city'
-            value={data.address.city}
+            value={formState.address.city}
             onChange={(e) =>
-              setData({
-                ...data,
+              setFormState({
+                ...formState,
                 address: {
-                  ...data.address,
+                  ...formState.address,
                   city: e.target.value,
                 },
               })
@@ -162,12 +181,12 @@ export const Form2 = ({ data, setData, prevStep, nextStep }) => {
             id='state'
             label='State'
             name='state'
-            value={data.address.state}
+            value={formState.address.state}
             onChange={(e) =>
-              setData({
-                ...data,
+              setFormState({
+                ...formState,
                 address: {
-                  ...data.address,
+                  ...formState.address,
                   state: e.target.value,
                 },
               })
@@ -187,12 +206,12 @@ export const Form2 = ({ data, setData, prevStep, nextStep }) => {
             id='zipCode'
             label='Zip Code'
             name='zipCode'
-            value={data.address.zipCode}
+            value={formState.address.zipCode}
             onChange={(e) =>
-              setData({
-                ...data,
+              setFormState({
+                ...formState,
                 address: {
-                  ...data.address,
+                  ...formState.address,
                   zipCode: e.target.value,
                 },
               })
@@ -219,10 +238,24 @@ export const Form2 = ({ data, setData, prevStep, nextStep }) => {
   );
 };
 
-export const Form3 = ({ data, userId, setData, prevStep }) => {
-  const handleSubmit = async (e) => {
+export const Form3 = ({ formState, userId, setFormState, prevStep }) => {
+  const navigate = useNavigate();
+
+  const [updateUser, { isLoading }] = useUpdateUserMutation();
+
+  const handleSubmit = (e) => {
     e.preventDefault();
-    await updateUserDetails(userId, data);
+    updateUser({ userId, formState })
+      .unwrap()
+      .then(() => {
+        console.log('success');
+        navigate(`/profile/${userId}`);
+      })
+      .catch((error) => {
+        console.log(formState);
+        console.log(userId);
+        console.error(error);
+      });
   };
 
   return (

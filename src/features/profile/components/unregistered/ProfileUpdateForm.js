@@ -57,6 +57,7 @@ const ProfileUpdateForm = ({ userId }) => {
     updateUser({ userId, formState })
       .unwrap()
       .then(() => {
+        console.log(formState);
         console.log('success');
         navigate(`/profile/${userId}`);
       })
