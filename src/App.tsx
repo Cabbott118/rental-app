@@ -23,13 +23,6 @@ import { theme } from 'styles/theme';
 import 'App.css';
 
 function App() {
-  if (process.env.NODE_ENV === 'development') {
-    console.log('Development environment');
-  } else if (process.env.NODE_ENV === 'production') {
-    console.log('Production environment');
-  } else {
-    console.log('Unknown environment');
-  }
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
