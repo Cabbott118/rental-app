@@ -22,7 +22,7 @@ const HomePage: React.FC<HomePageProps> = (props) => {
   return (
     <Container maxWidth='lg'>
       <Typography variant='h2' color='primary'>
-        Welcome to the Rental App
+        Welcome to the Rental App - test
       </Typography>
       <Typography variant='body1'>This is the home page.</Typography>
       <Typography variant='body1'>Environment: {environment}</Typography>
