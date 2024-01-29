@@ -2,7 +2,7 @@
 import { ROUTES } from 'resources/routes-constants';
 import {
   BrowserRouter as Router,
-  Outlet,
+  // Outlet,
   Route,
   Routes,
 } from 'react-router-dom';

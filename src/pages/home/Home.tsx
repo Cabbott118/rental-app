@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Typography, useTheme } from '@mui/material';
+import {
+  Container,
+  Typography,
+  //  useTheme
+} from '@mui/material';
 
 interface HomePageProps {
   // Add any props you might need here
 }
 
 const HomePage: React.FC<HomePageProps> = (props) => {
-  const theme = useTheme();
+  // const theme = useTheme();
   const [environment, setEnvironment] = useState('');
 
   useEffect(() => {
