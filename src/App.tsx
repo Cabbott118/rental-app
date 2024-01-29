@@ -1,25 +1,50 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+// Routing
+import { ROUTES } from 'resources/routes-constants';
+import {
+  BrowserRouter as Router,
+  Outlet,
+  Route,
+  Routes,
+} from 'react-router-dom';
+
+// MUI
+import {
+  Container,
+  Typography,
+  ThemeProvider,
+  CssBaseline,
+} from '@mui/material';
+
+// Pages
+import HomePage from 'pages/home/Home';
+
+// Styles
+import { theme } from 'styles/theme';
+import 'App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Router>
+        <Routes>
+          <Route path={ROUTES.HOMEPAGE_ROUTE}>
+            <Route index element={<HomePage />} />
+            <Route
+              path='*'
+              element={
+                <Container maxWidth='sm'>
+                  <Typography variant='h2'>404 Not Found</Typography>
+                  <Typography variant='body1'>
+                    You'll have to journey elsewhere.
+                  </Typography>
+                </Container>
+              }
+            />
+          </Route>
+        </Routes>
+      </Router>
+    </ThemeProvider>
   );
 }
 
