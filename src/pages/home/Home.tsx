@@ -16,8 +16,10 @@ const HomePage: React.FC<HomePageProps> = (props) => {
   useEffect(() => {
     if (process.env.NODE_ENV === 'development') {
       setEnvironment('Development');
+      console.log('Development');
     } else if (process.env.NODE_ENV === 'production') {
       setEnvironment('Production');
+      console.log('Production');
     } else {
       console.log('Unknown environment');
     }
@@ -26,7 +28,7 @@ const HomePage: React.FC<HomePageProps> = (props) => {
   return (
     <Container maxWidth='lg'>
       <Typography variant='h2' color='primary'>
-        Welcome to the Rental App - test
+        Welcome!
       </Typography>
       <Typography variant='body1'>This is the home page.</Typography>
       <Typography variant='body1'>Environment: {environment}</Typography>
