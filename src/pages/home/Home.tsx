@@ -21,7 +21,7 @@ const HomePage: React.FC<HomePageProps> = (props) => {
     } else {
       console.log('Unknown environment');
     }
-  }, []); // empty dependency array to run the effect only once after the initial render
+  }, []);
 
   return (
     <Container maxWidth='lg'>
